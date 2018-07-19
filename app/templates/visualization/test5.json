@@ -1,0 +1,15 @@
+{"nodes":[
+  {"id":"Saskia", "label":"Saskia", "name":"Bla", "address" : "Sesame Street 123, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy", "dataprotectionofficier": "John Doe"}
+  ,{"id":"Elias", "label":"Elias", "name":"Bla", "address" : "Sesame Street 345, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy", "dataprotectionofficier": "John Doe"}
+  ,{"id":"Linh", "label":"Linh", "name":"Bla", "address" : "Sesame Street 456, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy", "dataprotectionofficier": "John Doe"}
+  ,{"id":"Bank", "label":"Bank", "name":"Bla", "address" : "Sesame Street 248, Denver", "email" : "info@bank.de", "data-protection-information" : "https://paypal.com/privacy", "dataprotectionofficier": "John Doe5"}
+ ],
+"edges":[
+	{"id":"1", "from":"Linh", "to":"Elias", "datadisclosure":"name, user, age", "purpose": "konten", "period": "6 months"}
+  ,{"id":"2","from":"Linh", "to":"Saskia", "datadisclosure":"name", "purpose": "fullfill contract", "period": "3 months"}
+  ,{"id":"3","from":"Saskia", "to":"Bank", "datadisclosure":"age", "purpose": "everything", "period": "3 years"}
+  ,{"id":"4","from":"Bank", "to":"Elias", "datadisclosure":"dates", "purpose": "adasmdbk", "period": "12 months"}
+]
+}
+
+

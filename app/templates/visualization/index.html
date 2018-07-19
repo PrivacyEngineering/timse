@@ -1,0 +1,425 @@
+<!doctype html>
+<HTML>
+<HEAD>
+    <meta charset="utf-8">
+    <TITLE>TIMSE - Transparency in Multi Service Environments</TITLE>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='vis.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vis.min.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+        #networkServices {
+            width: 60%;
+            height: 600px;
+            border: 2px solid lightgray;
+            margin: 0px;
+        }
+
+        div.nodeContent {
+            position: relative;
+            border: 2px solid lightgray;
+            width: 40%;
+            height: 600px;
+            margin-top: -600px;
+            margin-left: 62%;
+            padding: 20px;
+        }
+
+        input {
+            margin-left: 0px;
+            margin-top: 5px;
+        }
+
+        h1 {
+            margin-left: 0px;
+        }
+
+        p {
+            margin-left: 0px;
+        }
+
+        h5 {
+            margin-left: 0px;
+        }
+
+        button {
+            margin-left: 0px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+</HEAD>
+
+<BODY>
+
+<div class="container">
+    <h1>TIMSE - Transparency in Multi Service Environments</h1>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron">
+                In <strong>multi-service environments</strong> service providers are <strong>handling personal
+                data</strong>.
+                By means of privacy policies they provide an overview about how personal data is handled.
+                Because of the <strong>complexity</strong> of the policies the data handling is not transparent.
+                By introducing the <strong>General Data Protection Regulation</strong> the EU mentioned transparency as
+                key element.
+                Data controllers should provide users insights in how their data is used, stored and processed.
+                This work designs <strong>timse</strong> as tool <strong>enhancing transparency</strong> in
+                multi-service environments to support service developers
+                for a <strong>transparent representation</strong> of the intended data handling.<br>
+            </div>
+
+
+            <div class="col-6">
+                <div id="networkServices"></div>
+                <!-- Add an invisible <div> element to the document, to hold the JSON data: -->
+                <div id="networkJSON-results" class="results" style="display:none"></div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="nodeContent"><h4>Information about exchanged data</h4>
+                <p>(Please click on any edge to see more)</p>
+                <pre id="nodeContent"></pre>
+            </div>
+        </div>
+
+
+        <div class="container">
+
+            <div class="row" style="margin-left: 0px;">
+
+                <div class="col-sm-6">
+                    <br>
+                    <button type="button" id="addRow" onclick="addURLrow();" class="btn btn-primary">Add another URL
+                    </button>
+                    <br><br>
+                    Add a timse API endpoint to get another JSON and update the network displayed.
+                </div>
+
+                <div class="col-sm-6">
+                    <br>
+                    <table id="myURLs" style="width: 100%">
+
+                        <tr>
+                            <td><input class="form-control" id="2" type="text"></td>
+                            <td>
+                                <button type="button" id="2" onclick="start();" class="btn btn-success"
+                                        style="margin-left: 5px;">Import JSON
+                                </button>
+
+                                <script>
+                                function insertTestJson() {
+                                    document.getElementById(2).value = 'http://' + window.location.host + '/json/test4.json';
+                                    start();
+                                }
+                                </script>
+                                <button type="button" id="btn_test_json" onclick="insertTestJson()"
+                                class="btn btn-info" style="margin-left: 5px;">Load test
+                               </button>
+
+                            </td>
+                        </tr>
+
+                        <tr></tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+
+<hr>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron">
+                This is joint work of <strong>Elias Grünewald</strong>, <strong>Saskia Nuñez von Voigt</strong> and
+                <strong>Duc Linh Tran</strong>.<img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Logo_der_Technischen_Universität_Berlin.svg"
+                    style="width: 15%; float: right;" class="img-fluid" alt="">
+
+                <br><br>
+                July 2018<br>
+                <strong>Privacy Engineering</strong><br>
+                Advisor: <strong>Dr. Frank Pallas</strong><br>
+                <br>
+                Chair Information Systems Engineering<br>
+                Institute of Commercial Information Technology and Quantitative Methods<br>
+                Faculty IV – Electrical Engineering and Computer Science<br>
+                Technical University of Berlin
+                <br>
+                <br>
+                See source code on <strong><a href="https://github.com/PrivacyEngineering/timse">Github</a></strong>.
+                <br>License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0 (Apache-2.0)</a>
+            </div>
+
+<script>
+console.log('Initializing canvas...');
+</script>
+
+            <script type="text/javascript">
+
+                function addURLrow() {
+                    var myURLs = document.getElementById("myURLs");
+                    var currentIndex = myURLs.rows.length;
+                    var currentRow = myURLs.insertRow(-1);
+
+                    var urlBox = document.createElement("input");
+                    urlBox.setAttribute("id", currentIndex);
+                    urlBox.setAttribute("class", "form-control");
+
+                    //console.log(currentIndex);
+
+                    /*var addRowBox = document.createElement("input");
+                      addRowBox.setAttribute("type", "button");
+                      addRowBox.setAttribute("value", "Add another URL");
+                      addRowBox.setAttribute("onclick", "addURLrow();");
+                      addRowBox.setAttribute("class", "button");
+                    */
+                    var addRowBox2 = document.createElement("input");
+                    addRowBox2.setAttribute("id", "btn-" + currentIndex);
+                    console.log("btn-" + currentIndex);
+                    addRowBox2.setAttribute("type", "button");
+                    addRowBox2.setAttribute("value", "Import JSON");
+                    addRowBox2.setAttribute("onclick", "start()");
+                    addRowBox2.setAttribute("class", "btn btn-success");
+                    addRowBox2.setAttribute("style", "margin-left: 5px;");
+
+                    var currentCell = currentRow.insertCell(-1);
+
+                    currentCell.appendChild(urlBox);
+
+                    currentCell = currentRow.insertCell(-1);
+                    //currentCell.appendChild(addRowBox);
+                    currentCell.appendChild(addRowBox2);
+                }
+
+                // OPTIONS:
+                // http://visjs.org/docs/network/#modules
+                // http://visjs.org/docs/network/edges.html#
+                // http://visjs.org/docs/network/physics.html#
+                var nodeContent = document.getElementById('nodeContent');
+
+                var options = {
+                    edges: {
+                        arrows: {
+                            to: {enabled: true, scaleFactor: 0.75, type: 'arrow'},
+                            middle: {enabled: false, scaleFactor: 1, type: 'arrow'},
+                            //from: {enabled: true, scaleFactor:0.3, type:'arrow'}
+                            from: {enabled: false, scaleFactor: 0.5, type: 'arrow'}
+                        },
+                        labelHighlightBold: true,
+                        arrowStrikethrough: true,
+                        chosen: true,
+                        color: {
+                            color: 'red',
+                            highlight: '#848484',
+                            hover: '#848484',
+                            inherit: 'from',
+                            opacity: 1.0
+                        },
+                        dashes: false,
+                    },
+                    // http://visjs.org/docs/network/physics.html#
+                    physics: {
+                        forceAtlas2Based: {
+                            gravitationalConstant: -26,
+                            centralGravity: 0.005,
+                            springLength: 230,
+                            springConstant: 0.18,
+                            avoidOverlap: 1.5
+                        },
+                        maxVelocity: 146,
+                        solver: 'forceAtlas2Based',
+                        timestep: 0.35,
+                        stabilization: {
+                            enabled: true,
+                            iterations: 1000,
+                            updateInterval: 25
+                        }
+                    }
+                };
+
+                var total = new Object(); //declare Object to merge jsons in
+                var count = 0; //use to get currentIndex
+
+                // -------------------------------------------------------------------------
+                // IMPORT DATA FROM EXTERNAL JSON FILE: (URL/ Path where JSON is located entered by user)
+
+                function start() {
+
+                    var i = 2;
+                    var count = 2; //currentIndex start by 2
+                    while (document.getElementById(count) != null) {
+                        //console.log(count);
+                        count = count + 1;
+                    }
+
+                    while (document.getElementById(i) != null) {
+                        var url1 = document.getElementById(i).value;
+                        //load json Ajax Request
+                        var json1 = $.getJSON(url1, function (data) {
+                            var data = {
+                                nodes: data.nodes,
+                                edges: data.edges
+                            };
+                            mergeData(data);
+                            //network should be drawn only after all jsons are merged --> last element
+                            if (i == count) {
+                                draw(total);
+                            }
+                        });
+                        i = i + 1;
+                    }
+                }
+
+                function length(obj) {
+                    if (obj.length) { // wenn es ein Array ist
+                        return obj.length
+                    }
+                    else // wenn es ein Object ist
+                        return Object.keys(obj).length;
+                }
+
+
+                function mergeData(data) {
+                    //for the first json just copy the json in total object
+                    if (count == 0) {
+                        total = data;
+                        nodes = total.nodes.concat(data.nodes);
+                        edges = total.edges.concat(data.edges);
+                        total = {nodes: nodes, edges: edges};
+                        count = 1;
+                    }
+                    else {
+                        nodes = total.nodes.concat(data.nodes);
+                        edges = total.edges.concat(data.edges);
+                        total = {nodes: nodes, edges: edges};
+                        //console.log('total.edges für draw: ', total.edges);
+                    }
+                    return total;
+                }
+
+
+                function draw(json) {
+                    // console.log('Json für draw: ', json);
+
+                    var data = json;
+
+                    //console.log('data.edges für draw: ', data.edges);
+
+                    //delete duplicate edges
+                    for (var i = 0; i < length(data.edges); i++) {
+                        for (var j = i + 1; j < length(data.edges);) {
+                            if (data.edges[i].from == data.edges[j].from && data.edges[i].to == data.edges[j].to) {
+                                // Found the same. Remove it.
+                                data.edges.splice(j, 1);
+                                //console.log(data.nodes[i].id);
+                            }
+                            else {
+                                // No match. Go ahead.
+                                j++;
+                            }
+                        }
+                    }
+
+                    //update the id (enumerate)
+                    for (var i = 0; i < length(data.edges); i++) {
+                        data.edges[i].id = i + 1;
+                    }
+
+                    // delete duplicate nodes
+                    for (var i = 0; i < length(data.nodes); i++) {
+                        for (var j = i + 1; j < length(data.nodes);) {
+                            if (data.nodes[i].id == data.nodes[j].id) {
+                                // Found the same. Remove it.
+                                data.nodes.splice(j, 1);
+                                //console.log(data.nodes[i].id);
+                            }
+                            else {
+                                // No match. Go ahead.
+                                j++;
+                            }
+                        }
+                    }
+
+
+                    var network = new vis.Network(container, data, options);
+
+                    network.on('click', function (properties) {
+                        var nodeIds = properties.nodes[0];
+                        var edgeIds = properties.edges[0];
+                        //console.log('edge ids:', edgeIds);
+                        //console.log('from', properties.edges[0].from)
+                        //var from = data.edges[edgeIds-1].from;
+                        //var nodefrom = nodeIds[2];
+
+                        for (var i = 0; i < length(data.nodes); i++) {
+                            //for (var i=0; i < 1 ; i++){
+
+                            var from = data.edges[edgeIds - 1].from;
+                            var fromnode = data.nodes[i].id;
+                            var to = data.edges[edgeIds - 1].to;
+
+                            if (from === fromnode) {
+                                var fromaddress = data.nodes[i].address;
+                                var fromemail = data.nodes[i].email;
+                                var fromDataofficier = data.nodes[i].dataprotectionofficier;
+                            }
+                            else if (to === fromnode) {
+                                var toaddress = data.nodes[i].address;
+                                var toemail = data.nodes[i].email;
+                                var toDataofficier = data.nodes[i].dataprotectionofficier;
+                            }
+                        }
+
+                        //Display the information about exchanged data
+                        nodeContent.innerHTML = ('<strong><h4>Data controller</h4><br>' + data.edges[edgeIds - 1].from + '</strong>\nAddress: <strong>' + fromaddress + '</strong>\nE-Mail: <strong>'
+                            + fromemail + '</strong>\nData Protection Officer: <strong>' + fromDataofficier + '</strong>\n\n<strong><h4>Recipient</h4>\n'
+                            + data.edges[edgeIds - 1].to + '</strong>\nAddress: <strong>' + toaddress + '</strong>\nE-Mail: <strong>' + toemail
+                            + '</strong>\nData Protection Officer: <strong>' + toDataofficier + '</strong>\n\nData disclosed: <strong>'
+                            + data.edges[edgeIds - 1].datadisclosure + '</strong>\nPurpose: <strong>' + data.edges[edgeIds - 1].purpose + '</strong>\nStorage period: <strong>'
+                            + data.edges[edgeIds - 1].period + '</strong>');
+                    });
+
+                    network.on('doubleClick', function (properties) {
+                        nodeContent.innerHTML = "";
+                    });
+
+                }
+
+                var container = document.getElementById('networkServices');
+            </script>
+
+
+
+            <script>
+              console.log('Setting default URL.')
+              document.getElementById('2').value = 'http://' + window.location.host + '/timse/info-dashboard';
+              console.log('Starting...');
+              start();
+              addURLrow();
+            </script>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,17 @@
+{"nodes":[
+  {"id":"Amazon", "label":"Amazon", "name":"Bla", "address" : "Sesame Street 123, Denver", "email" : "info@amazon.de", "dataprotectioninformation" : "https://amazon.com/privacy", "dataprotectionofficier": "John Doe" }
+  ,{"id":"PayPal", "label":"PayPal", "name":"Bla", "address" : "Sesame Street 345, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy", "dataprotectionofficier": "Max Muster"}
+  ,{"id":"Schufa", "label":"Schufa", "name":"Bla", "address" : "Sesame Street 678, Denver", "email" : "info@schufa.de", "data-protection-information" : "https://schufa.com/privacy", "dataprotectionofficier": "John Doe"}
+  ,{"id":"Post", "label":"Post", "name":"Bla", "address" : "Sesame Street 910, Denver", "email" : "info@post.de", "data-protection-information" : "https://post.com/privacy", "dataprotectionofficier": "John Doe3"}
+  ,{"id":"Bank", "label":"Bank", "name":"Bla", "address" : "Sesame Street 248, Denver", "email" : "info@bank.de", "data-protection-information" : "https://bank.com/privacy", "dataprotectionofficier": "John Doe5"}
+],
+"edges":[
+  {"id":"1", "from":"Amazon", "to":"PayPal", "datadisclosure":"name, user, age", "purpose": "konten", "period": "6 months"}
+  ,{"id":"2","from":"Amazon", "to":"Schufa", "datadisclosure":"name", "purpose": "fullfill contract", "period": "3 months"}
+  ,{"id":"3","from":"PayPal", "to":"Post", "datadisclosure":"age", "purpose": "everything", "period": "3 years"}
+  ,{"id":"4","from":"PayPal", "to":"Bank", "datadisclosure":"dates", "purpose": "adasmdbk", "period": "12 months"}
+  ,{"id":"5","from":"PayPal", "to":"Schufa", "datadisclosure":"anything", "purpose": "advertisement", "period": "3 weeks"}
+]
+}
+
+

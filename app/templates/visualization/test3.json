@@ -1,0 +1,16 @@
+{"nodes":[
+  {"id":"TUB", "label":"Tu Berlin", "name":"Bla", "address" : "Sesame Street 345, Toronto", "email" : "info@tub.de", "data-protection-information" : "https://tu-berlin.com/privacy", "dataprotectionofficier": "John Doe"}
+  ,{"id":"FU", "label":"FU Berlin", "name":"Bla", "address" : "Sesame Street 456, Toronto", "email" : "info@FU.de", "data-protection-information" : "https://fu-berlin.com/privacy", "dataprotectionofficier": "John Doe"}
+  ,{"id":"Schufa", "label":"Schufa", "name":"Bla", "address" : "Sesame Street 678, Denver", "email" : "info@schufa.de", "data-protection-information" : "https://schufa.com/privacy", "dataprotectionofficier": "Mas Mustermann"}
+  ,{"id":"BVG", "label":"BVG", "name":"Bla", "address" : "Example Street 678, Denver", "email" : "info@bvg.de", "data-protection-information" : "https://bvg.com/privacy", "dataprotectionofficier": "Charlie Brown"}
+,{"id":"Senat", "label":"Berliner Senat", "name":"Bla", "address" : "Example Street 678, Denver", "email" : "info@bsenat.de", "data-protection-information" : "https://berliner-senat.com/privacy", "dataprotectionofficier": "Team 6-XYZ"}
+],
+"edges":[
+  {"id":"1","from":"TUB", "to":"FU", "datadisclosure":"mtk, modules, grades", "purpose": "second study", "period": "3 years"}
+  ,{"id":"2","from":"TUB", "to":"Schufa", "datadisclosure":"name, address, age, status", "purpose": "appartment rendering", "period": "6 months"}
+  ,{"id":"3","from":"TUB", "to":"BVG", "datadisclosure":"name, status", "purpose": "public transport", "period": "3 weeks"}
+  ,{"id":"4","from":"TUB", "to":"Senat", "datadisclosure":"number of students", "purpose": "advertisement", "period": "18 months"}
+]
+}
+
+

@@ -1,0 +1,26 @@
+{"nodes":[
+  {"id":"Amazon", "label":"Amazon", "name":"Bla", "address" : "Sesame Street 123, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy"}
+  ,{"id":"PayPal", "label":"PayPal", "name":"Bla", "address" : "Sesame Street 123, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy"}
+  ,{"id":"Schufa", "label":"Schufa", "name":"Bla", "address" : "Sesame Street 123, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy"}
+  ,{"id":"Post", "label":"Post", "name":"Bla", "address" : "Sesame Street 123, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy"}
+  ,{"id":"Bank", "label":"Bank", "name":"Bla", "address" : "Sesame Street 123, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy"}
+  ,{"id":"TUB", "label":"Tu Berlin", "name":"Bla", "address" : "Sesame Street 345, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy"}
+  ,{"id":"FU", "label":"FU Berlin", "name":"Bla", "address" : "Sesame Street 456, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy"}
+  ,{"id":"PayPal", "label":"PayPal", "name":"Bla", "address" : "Sesame Street 123, Denver", "email" : "info@paypal.de", "data-protection-information" : "https://paypal.com/privacy"}
+],
+"edges":[
+  {"id":"1", "from":"Amazon", "to":"PayPal", "datadisclosure":"name, user, age", "purpose": "konten", "period": "6 months"}
+  ,{"id":"2","from":"Amazon", "to":"Schufa", "datadisclosure":"name", "purpose": "fullfill contract", "period": "3 months"}
+  ,{"id":"3","from":"PayPal", "to":"Post", "datadisclosure":"age", "purpose": "everything", "period": "3 years"}
+  ,{"id":"4","from":"PayPal", "to":"Bank", "datadisclosure":"dates", "purpose": "adasmdbk", "period": "12 months"}
+  ,{"id":"5","from":"PayPal", "to":"Schufa", "datadisclosure":"anything", "purpose": "advertisement", "period": "3 weeks"}
+  , {"id":"1", "from":"Amazon", "to":"TUB", "datadisclosure":"name, user, age", "purpose": "konten", "period": "6 months"}
+  ,{"id":"2","from":"Amazon", "to":"Schufa", "datadisclosure":"name", "purpose": "fullfill contract", "period": "3 months"}
+  ,{"id":"3","from":"TUB", "to":"FU", "datadisclosure":"age", "purpose": "everything", "period": "3 years"}
+  ,{"id":"4","from":"Schufa", "to":"FU", "datadisclosure":"dates", "purpose": "adasmdbk", "period": "12 months"}
+  ,{"id":"5","from":"Amazon", "to":"FU", "datadisclosure":"anything", "purpose": "advertisement", "period": "3 weeks"}
+]
+}
+
+
+
