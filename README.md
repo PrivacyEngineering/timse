@@ -14,7 +14,7 @@ In multi-service environments service providers are handling personal data. By m
     "msg": "timse started successfully!"
 }`
 - Open [http://localhost/](http://localhost/) to access the API documentation
-- Open [http://localhost/](http://localhost/Dashboard) to explore the User Interface
+- Open [http://localhost/Dashboard](http://localhost/Dashboard) to explore the User Interface
 
 ## Live-Demo
 - Dashboard: [http://timse-dashboard.implementation.cloud](http://timse-dashboard.implementation.cloud)
