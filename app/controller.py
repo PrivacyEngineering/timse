@@ -35,7 +35,7 @@ timse.DATA_DISCLOSED.add('KREDIT', 'Kreditkarteninformation')
 
 meta_model = api.model('Meta', {
 	'timse-version':   fields.Float(required=True, description='Version of timse in use.'),
-	'timestamp':       fields.DateTime(required=True, description='Date and time of document generation.'),
+	'timestamp':       fields.String(required=True, description='Date and time of document generation.'),
 	'source':          fields.String(required=True, description='URL endpoint by which the document was created.'),
 	'method':          fields.String(required=True, description='HTTP method used.'),
 	'error':           fields.Boolean(required=True, description='Defines if an error occurred.')
@@ -77,7 +77,7 @@ class Up(Resource):
 
 @ns.route('/meta')
 class MetaPublic(Resource):
-    @ns.marshal_with(meta_model)
+    #@ns.marshal_with(meta_model)
     def get(self):
         return Meta(source='/').get()
 
@@ -253,4 +253,4 @@ def test_static_information():
 
 def startTimse():
     print('=== You successfully started TIMSE! Have fun. :-) ===')
-    app.run(debug=True, host= '0.0.0.0')
+    app.run(debug=True, host= '0.0.0.0', port=80)
