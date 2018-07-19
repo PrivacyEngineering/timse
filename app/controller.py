@@ -253,4 +253,4 @@ def test_static_information():
 
 def startTimse():
     print('=== You successfully started TIMSE! Have fun. :-) ===')
-    app.run(debug=True)
+    app.run(debug=True, host= '0.0.0.0')
